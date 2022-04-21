@@ -22,10 +22,10 @@ export default {
     },
   },
   pre: {
-    '/api/': {
-      target: 'your pre url',
+    '/api': {
+      target: 'http://47.111.83.62/',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/api': '/api' },
     },
   },
 };

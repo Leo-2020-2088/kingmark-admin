@@ -34,6 +34,30 @@ declare namespace API {
     pageSize?: number;
   };
 
+  type ProductListItem = {
+    index?: number; // 排序
+    isTop?: boolean; // 置顶
+    img?: string; // 产品缩略图
+    classification?: string; // 产品分类
+    nameCn?: string; // 产品名称（中文）
+    nameEn?: string; // 产品名称（英文）
+    status?: '01' | '02'; // 产品状态 01:上架 02:下架
+    createdAt?: string; // 创建时间
+    updatedAt?: string; // 更新时间
+    id: string; // 产品 ID
+  };
+  type ClassificationListItem = {
+    index?: number; // 排序
+    img?: string; // 分类缩略图
+    nameCn?: string; // 分类名称（中文）
+    nameEn?: string; // 分类名称（英文）
+    createdAt?: string; // 创建时间
+    updatedAt?: string; // 更新时间
+    id: string; // 分类 ID
+    pid?: string // 父类 ID
+    level: number // 层级
+    children?: ClassificationListItem[] // 子类
+  }
   type RuleListItem = {
     key?: number;
     disabled?: boolean;
