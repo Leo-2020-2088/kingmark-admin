@@ -57,4 +57,8 @@ export default {
   'menu.classification.classification-list': '分类列表',
   'menu.classification.classification-add': '新增',
   'menu.classification.classification-edit': '编辑',
+  'menu.news': '新闻管理',
+  'menu.news.news-list': '新闻列表',
+  'menu.news.news-add': '新增',
+  'menu.news.news-edit': '编辑',
 };

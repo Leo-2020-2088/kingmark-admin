@@ -1,40 +1,31 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Request, Response } from 'express';
-import moment from 'moment';
 import { parse } from 'url';
 
-// mock tableListDataSource
-const genList = (current: number, pageSize: number) => {
-  const tableListDataSource: API.ProductListItem[] = [];
-
-  for (let i = 0; i < pageSize; i += 1) {
-    const index = (current - 1) * 10 + i;
-    tableListDataSource.push({
-      index: index,
-      isTop: i % 6 === 0,
+// mock tableListDataSource current: number, pageSize: number
+const genList = () => {
+  const tableListDataSource: API.NewsListItem[] = [
+    {
       img: 'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
-      classification: '分类1/分类11',
-      nameCn: `产品名称${i}`,
-      nameEn: `pro${i}`,
-      status: '01',
-      updatedAt: moment().format('YYYY-MM-DD'),
-      createdAt: moment().format('YYYY-MM-DD'),
-      id: `procode${index}`,
-    });
-  }
-  tableListDataSource.reverse();
+      nameCn: '新闻1',
+      nameEn: 'news1',
+      createdAt: '2022-03-22',
+      updatedAt: '2022-04-28',
+      id: 'id09944545',
+    },
+  ];
   return tableListDataSource;
 };
-let tableListDataSource = genList(1, 100);
+let tableListDataSource = genList();
 
-function getProducts(req: Request, res: Response, u: string) {
+function getTableData(req: Request, res: Response, u: string) {
   let realUrl = u;
   if (!realUrl || Object.prototype.toString.call(realUrl) !== '[object String]') {
     realUrl = req.url;
   }
   const { current = 1, pageSize = 10 } = req.query;
   const params = parse(realUrl, true).query as unknown as API.PageParams &
-    API.ProductListItem & {
+    API.ClassificationListItem & {
       sorter: any;
       filter: any;
     };
@@ -95,18 +86,17 @@ function getProducts(req: Request, res: Response, u: string) {
   return res.json(result);
 }
 
-function delProducts(req: Request, res: Response, u: string) {
+function delClassifications(req: Request, res: Response, u: string) {
   const { ids } = req.body as { ids: string[] };
   tableListDataSource = tableListDataSource.filter(
-    (item: API.ProductListItem) => !ids.includes(item.id),
+    (item: API.ClassificationListItem) => !ids.includes(item.id),
   );
   const result = {
     success: true,
-    msg: '',
   };
   return res.json(result);
 }
 export default {
-  'GET /api/km/product/page/list': getProducts,
-  'DELETE /api/km/products/del': delProducts,
+  'GET /api/km/news/page/list': getTableData,
+  'DELETE /api/km/classification/del': delClassifications,
 };

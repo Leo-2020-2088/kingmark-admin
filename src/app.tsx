@@ -76,7 +76,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     //     ]
     //   : [],
     menuHeaderRender: undefined,
-    iconfontUrl: '//at.alicdn.com/t/font_3348399_6fum782ylsg.js',
+    iconfontUrl: '//at.alicdn.com/t/font_3348399_uxbdkcf7sci.js',
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
     ...initialState?.settings,

@@ -41,7 +41,7 @@ const genList = () => {
           ],
         },
       ],
-    }
+    },
   ];
   return tableListDataSource;
 };
@@ -54,10 +54,10 @@ function getClassifications(req: Request, res: Response, u: string) {
   }
   const { current = 1, pageSize = 10 } = req.query;
   const params = parse(realUrl, true).query as unknown as API.PageParams &
-  API.ClassificationListItem & {
-    sorter: any;
-    filter: any;
-  };
+    API.ClassificationListItem & {
+      sorter: any;
+      filter: any;
+    };
   let dataSource = [...tableListDataSource].slice(
     ((current as number) - 1) * (pageSize as number),
     (current as number) * (pageSize as number),
@@ -116,14 +116,16 @@ function getClassifications(req: Request, res: Response, u: string) {
 }
 
 function delClassifications(req: Request, res: Response, u: string) {
-  const {ids} = req.body as {ids: string[]}
-  tableListDataSource = tableListDataSource.filter((item: API.ClassificationListItem) => !ids.includes(item.id))
+  const { ids } = req.body as { ids: string[] };
+  tableListDataSource = tableListDataSource.filter(
+    (item: API.ClassificationListItem) => !ids.includes(item.id),
+  );
   const result = {
     success: true,
   };
   return res.json(result);
 }
 export default {
-  'GET /api/classifications': getClassifications,
-  'DELETE /api/classification/del': delClassifications,
+  'GET /api/km/category/tree/list': getClassifications,
+  'DELETE /api/km/classification/del': delClassifications,
 };

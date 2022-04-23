@@ -54,10 +54,20 @@ declare namespace API {
     createdAt?: string; // 创建时间
     updatedAt?: string; // 更新时间
     id: string; // 分类 ID
-    pid?: string // 父类 ID
-    level: number // 层级
-    children?: ClassificationListItem[] // 子类
-  }
+    pid?: string; // 父类 ID
+    level: number; // 层级
+    children?: ClassificationListItem[]; // 子类
+  };
+  type NewsListItem = {
+    isTop?: boolean; // 置顶
+    img?: string; // 新闻缩略图
+    nameCn?: string; // 新闻标题（中文）
+    nameEn?: string; // 新闻标题（英文）
+    status?: '01' | '02'; // 产品状态 01:发布 02:下架
+    createdAt?: string; // 创建时间
+    updatedAt?: string; // 更新时间
+    id: string; // 新闻 ID
+  };
   type RuleListItem = {
     key?: number;
     disabled?: boolean;
