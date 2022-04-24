@@ -2,16 +2,21 @@ import { FooterToolbar, PageContainer } from '@ant-design/pro-layout';
 import React, { useState } from 'react';
 import styles from './style.less';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Card, Col, Popover, Row, message } from 'antd';
-import { fieldLabels, tabList } from './_config'
-import type { ErrorField } from './_data.d'
+import { Col, Popover, Row, message } from 'antd';
+import { fieldLabels } from './_config';
+import type { ErrorField } from './_data.d';
 import { fakeSubmitForm } from './_api';
 import ProCard from '@ant-design/pro-card';
-import ProForm, { ProFormUploadButton, ProFormSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import ProForm, {
+  ProFormUploadButton,
+  ProFormSelect,
+  ProFormText,
+  ProFormTextArea,
+} from '@ant-design/pro-form';
 
 const NewProduct: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
-  const [activeTabKey, setActiveTabKey] = useState<string>('cn')
+  const [activeTabKey, setActiveTabKey] = useState<string>('cn');
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
@@ -69,8 +74,8 @@ const NewProduct: React.FC = () => {
     setError(errorInfo.errorFields);
   };
   const onTabChange = (key: string) => {
-    setActiveTabKey(key)
-  }
+    setActiveTabKey(key);
+  };
   return (
     <ProForm
       layout="horizontal"
@@ -82,7 +87,7 @@ const NewProduct: React.FC = () => {
               {getErrorInfo(error)}
               {dom}
             </FooterToolbar>
-          )
+          );
         },
       }}
       onFinish={onFinish}
@@ -119,7 +124,7 @@ const NewProduct: React.FC = () => {
                   name: 'file',
                   listType: 'picture-card',
                 }}
-                action="/upload.do"
+                action="/api/km/upload/file"
                 extra=""
               />
             </Col>
@@ -177,6 +182,6 @@ const NewProduct: React.FC = () => {
         </ProCard>
       </PageContainer>
     </ProForm>
-  )
-}
-export default NewProduct
+  );
+};
+export default NewProduct;

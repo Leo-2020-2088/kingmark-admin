@@ -2,22 +2,28 @@ import { FooterToolbar, PageContainer } from '@ant-design/pro-layout';
 import React, { useState } from 'react';
 import styles from './style.less';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Card, Col, Popover, Row, message } from 'antd';
-import { fieldLabels, tabList } from './_config'
-import type { ErrorField } from './_data'
+import { Col, Popover, Row, message } from 'antd';
+import { fieldLabels } from './_config';
+import type { ErrorField } from './_data';
 import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
-import {useParams} from 'umi';
-import ProForm, { ProFormUploadButton, ProFormSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import { useParams } from 'umi';
+import ProForm, {
+  ProFormUploadButton,
+  ProFormSelect,
+  ProFormText,
+  ProFormTextArea,
+} from '@ant-design/pro-form';
 
 interface ClassificationRouterParam {
-  id: string
-  level: string
+  id: string;
+  level: string;
 }
 const NewProduct: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
-  const [activeTabKey, setActiveTabKey] = useState<string>('cn')
-  const {id, level}: ClassificationRouterParam = useParams()
+  const [activeTabKey, setActiveTabKey] = useState<string>('cn');
+  const { id, level }: ClassificationRouterParam = useParams();
+  console.log(id);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
@@ -75,8 +81,8 @@ const NewProduct: React.FC = () => {
     setError(errorInfo.errorFields);
   };
   const onTabChange = (key: string) => {
-    setActiveTabKey(key)
-  }
+    setActiveTabKey(key);
+  };
   return (
     <ProForm
       layout="horizontal"
@@ -88,7 +94,7 @@ const NewProduct: React.FC = () => {
               {getErrorInfo(error)}
               {dom}
             </FooterToolbar>
-          )
+          );
         },
       }}
       onFinish={onFinish}
@@ -96,7 +102,13 @@ const NewProduct: React.FC = () => {
     >
       <PageContainer content="高级表单常见于一次性输入和提交大批量数据的场景。">
         <ProCard title="父级分类信息与封面图片" className={styles.card} headerBordered>
-          <ProFormText name="level" label="层级" hidden initialValue={Number(level) + 1} placeholder="请输入层级" />
+          <ProFormText
+            name="level"
+            label="层级"
+            hidden
+            initialValue={Number(level) + 1}
+            placeholder="请输入层级"
+          />
           <Row gutter={16}>
             {level !== '0' && (
               <Col lg={10} md={12} sm={24}>
@@ -122,15 +134,15 @@ const NewProduct: React.FC = () => {
             {level === '0' && (
               <Col sm={24}>
                 <ProFormUploadButton
-                  label={fieldLabels.img}
                   name="img"
-                  max={1}
+                  label={fieldLabels.img}
+                  max={2}
                   fieldProps={{
                     name: 'file',
                     listType: 'picture-card',
                   }}
                   action="/api/km/upload/file"
-                  extra=""
+                  extra="longgggggggggggggggggggggggggggggggggg"
                 />
               </Col>
             )}
@@ -188,6 +200,6 @@ const NewProduct: React.FC = () => {
         </ProCard>
       </PageContainer>
     </ProForm>
-  )
-}
-export default NewProduct
+  );
+};
+export default NewProduct;
