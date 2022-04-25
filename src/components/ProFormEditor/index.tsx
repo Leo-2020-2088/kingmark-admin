@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ProForm from '@ant-design/pro-form';
 import type { ProFormItemProps } from '@ant-design/pro-form';
-// import ReactQuill from 'react-quill';
-// import 'react-quill/dist/quill.snow.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { message } from 'antd';
 

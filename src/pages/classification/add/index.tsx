@@ -7,19 +7,16 @@ import { fieldLabels } from './_config';
 import type { ErrorField } from './_data';
 import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
-import { useParams } from 'umi';
-import ProForm, {
-  ProFormUploadButton,
-  ProFormSelect,
-  ProFormText,
-  ProFormTextArea,
-} from '@ant-design/pro-form';
+import { useParams, history } from 'umi';
+import ProForm, { ProFormSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import ProFormUploadImg from '@/components/ProFormUploadImg';
 
 interface ClassificationRouterParam {
   id: string;
   level: string;
 }
-const NewProduct: React.FC = () => {
+
+const NewClassification: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
   const [activeTabKey, setActiveTabKey] = useState<string>('cn');
   const { id, level }: ClassificationRouterParam = useParams();
@@ -73,6 +70,7 @@ const NewProduct: React.FC = () => {
     try {
       await onSave(values);
       message.success('提交成功');
+      history.push('/classification');
     } catch {
       // console.log
     }
@@ -133,17 +131,7 @@ const NewProduct: React.FC = () => {
             )}
             {level === '0' && (
               <Col sm={24}>
-                <ProFormUploadButton
-                  name="img"
-                  label={fieldLabels.img}
-                  max={2}
-                  fieldProps={{
-                    name: 'file',
-                    listType: 'picture-card',
-                  }}
-                  action="/api/km/upload/file"
-                  extra="longgggggggggggggggggggggggggggggggggg"
-                />
+                <ProFormUploadImg label={fieldLabels.img} max={1} name="img" />
               </Col>
             )}
           </Row>
@@ -202,4 +190,4 @@ const NewProduct: React.FC = () => {
     </ProForm>
   );
 };
-export default NewProduct;
+export default NewClassification;
