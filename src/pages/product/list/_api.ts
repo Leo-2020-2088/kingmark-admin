@@ -24,12 +24,16 @@ export async function queryTableDataApi(
 /** 删除产品 POST /api/peoducts/del */
 export async function delTableDataApi(
   // 产品 ID 数组
-  params: string[]
+  ids: string[],
 ) {
-  return request('/api/products/del', {
-    method: 'DELETE',
-    data: {
-      ids: params,
-    }
+  return request('/api/km/product/delete', {
+    method: 'POST',
+    data: ids,
   });
+}
+export async function publishApi(id: string, isPublish: boolean) {
+  return request(`/api/km/product/publish/${id}/${isPublish ? '01' : '02'}`, { method: 'POST' });
+}
+export async function setTopApi(id: string, isTop: boolean) {
+  return request(`/api/km/product/top/${id}/${isTop ? '1' : '0'}`);
 }

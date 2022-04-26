@@ -10,6 +10,7 @@ import ProCard from '@ant-design/pro-card';
 import ProForm, { ProFormText } from '@ant-design/pro-form';
 import ProFormEditor from '@/components/ProFormEditor';
 import ProFormUploadImg from '@/components/ProFormUploadImg';
+import { history } from 'umi';
 
 const NewNews: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
@@ -63,8 +64,9 @@ const NewNews: React.FC = () => {
     try {
       await onSave(values);
       message.success('提交成功');
-    } catch {
-      // console.log
+      history.push('/news');
+    } catch (e: any) {
+      message.error(e.message);
     }
   };
   const onFinishFailed = (errorInfo: any) => {

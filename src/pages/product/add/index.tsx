@@ -5,11 +5,12 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import { Col, Popover, Row, message } from 'antd';
 import { fieldLabels } from './_config';
 import type { ErrorField } from './_data.d';
-import { fakeSubmitForm } from './_api';
+import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
 import ProForm, { ProFormText, ProFormTextArea, ProFormTreeSelect } from '@ant-design/pro-form';
 import { queryClassificationOptions } from '@/services/common';
 import ProFormUploadImg from '@/components/ProFormUploadImg';
+import { history } from 'umi';
 
 const NewProduct: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
@@ -61,10 +62,11 @@ const NewProduct: React.FC = () => {
   const onFinish = async (values: Record<string, any>) => {
     setError([]);
     try {
-      await fakeSubmitForm(values);
+      await onSave(values);
       message.success('提交成功');
-    } catch {
-      // console.log
+      history.push('/product');
+    } catch (e: any) {
+      message.error(e.message);
     }
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -172,4 +174,5 @@ const NewProduct: React.FC = () => {
     </ProForm>
   );
 };
+
 export default NewProduct;

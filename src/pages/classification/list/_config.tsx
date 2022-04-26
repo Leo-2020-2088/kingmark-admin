@@ -1,29 +1,31 @@
-import { ProColumns, ActionType } from '@ant-design/pro-table'
-import { Popconfirm, Button, message, Modal } from 'antd'
-import { history, Link } from 'umi'
-import { delTableDataApi } from './_api'
-export const handleRemove = async(ids: string[], actionRef: ActionType) => {
+import type { ProColumns, ActionType } from '@ant-design/pro-table';
+import { Popconfirm, message } from 'antd';
+import { history, Link } from 'umi';
+import { delTableDataApi } from './_api';
+export const handleRemove = async (ids: string[], actionRef: ActionType) => {
   try {
-    const res = await delTableDataApi(ids)
+    const res = await delTableDataApi(ids);
     if (res.success) {
-      actionRef?.current?.reload()
-      message.success('删除成功！')
-      return
+      actionRef?.current?.reload();
+      message.success('删除成功！');
+      return;
     }
-    throw new Error(res.message)
-  } catch(error: any) {
-    message.error(error.message)
+    throw new Error(res.message);
+  } catch (error: any) {
+    message.error(error.message);
   }
-}
-export const setTableColumns = (actionRef: ActionType): ProColumns<API.ClassificationListItem>[] => {
+};
+export const setTableColumns = (
+  actionRef: ActionType,
+): ProColumns<API.ClassificationListItem>[] => {
   return [
     {
       title: '分类名称',
       dataIndex: 'nameCn',
       render: (_, row: API.ClassificationListItem) => {
-        const { nameCn, nameEn } = row
-        return `${nameCn}/${nameEn}`
-      }
+        const { nameCn, nameEn } = row;
+        return `${nameCn}/${nameEn}`;
+      },
     },
     {
       title: '封面图',
@@ -47,13 +49,15 @@ export const setTableColumns = (actionRef: ActionType): ProColumns<API.Classific
       hideInSearch: true,
       dataIndex: 'id',
       render: (_, record: API.ClassificationListItem) => {
-        const { id, level } = record
+        const { id, level } = record;
         // 添加子分类
         return (
           <>
-            <Link className='space-plus' to={`/classification/edit/${id}`}>编辑</Link>
+            <Link className="space-plus" to={`/classification/edit/${id}`}>
+              编辑
+            </Link>
             <Popconfirm
-              className='space-plus'
+              className="space-plus"
               key="popconfirm"
               title="确认删除吗？"
               onConfirm={() => handleRemove([id], actionRef)}
@@ -62,14 +66,18 @@ export const setTableColumns = (actionRef: ActionType): ProColumns<API.Classific
             >
               <a>删除</a>
             </Popconfirm>
-            {level < 3 && <Link className='space-plus' to={`/classification/add/${level}/${id}`}>添加子分类</Link>}
+            {level < 3 && (
+              <Link className="space-plus" to={`/classification/add/${level}/${id}`}>
+                添加子分类
+              </Link>
+            )}
           </>
-        )
-      }
+        );
+      },
     },
-  ]
-}
-// export const columns: ProColumns<API.ClassificationListItem>[] = 
+  ];
+};
+// export const columns: ProColumns<API.ClassificationListItem>[] =
 export const handleAdd = () => {
-  history.push('/classification/add/0/0')
-}
+  history.push('/classification/add/0/0');
+};

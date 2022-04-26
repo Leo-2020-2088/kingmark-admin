@@ -9,6 +9,7 @@ import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
 import { useParams, history } from 'umi';
 import ProForm, { ProFormTreeSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import { queryClassificationOptions } from '@/services/common';
 import ProFormUploadImg from '@/components/ProFormUploadImg';
 
 interface ClassificationRouterParam {
@@ -20,7 +21,7 @@ const NewClassification: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
   const [activeTabKey, setActiveTabKey] = useState<string>('cn');
   const { id, level }: ClassificationRouterParam = useParams();
-  console.log(id);
+
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
@@ -71,8 +72,8 @@ const NewClassification: React.FC = () => {
       await onSave(values);
       message.success('提交成功');
       history.push('/classification');
-    } catch {
-      // console.log
+    } catch (e: any) {
+      message.error(e.message);
     }
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -111,45 +112,14 @@ const NewClassification: React.FC = () => {
             {level !== '0' && (
               <Col lg={10} md={12} sm={24}>
                 <ProFormTreeSelect
-                  label={fieldLabels.name}
                   name="pid"
-                  placeholder="Please select"
+                  label={fieldLabels.pid}
+                  placeholder="请选择父级分类"
                   allowClear
-                  width={330}
                   secondary
-                  request={async () => {
-                    return [
-                      {
-                        title: 'Node1',
-                        value: '0-0',
-                        children: [
-                          {
-                            title: 'Child Node1',
-                            value: '0-0-0',
-                          },
-                        ],
-                      },
-                      {
-                        title: 'Node2',
-                        value: '0-1',
-                        children: [
-                          {
-                            title: 'Child Node3',
-                            value: '0-1-0',
-                          },
-                          {
-                            title: 'Child Node4',
-                            value: '0-1-1',
-                          },
-                          {
-                            title: 'Child Node5',
-                            value: '0-1-2',
-                          },
-                        ],
-                      },
-                    ];
-                  }}
-                  // tree-select args
+                  rules={[{ required: true, message: '请选择父级分类' }]}
+                  initialValue={id}
+                  request={queryClassificationOptions}
                   fieldProps={{
                     showArrow: true,
                     filterTreeNode: true,
@@ -158,13 +128,6 @@ const NewClassification: React.FC = () => {
                     labelInValue: true,
                     autoClearSearchValue: true,
                     multiple: false,
-                    treeNodeFilterProp: 'title',
-                    treeLine: {
-                      showLeafIcon: false,
-                    },
-                    fieldNames: {
-                      label: 'title',
-                    },
                   }}
                 />
               </Col>
