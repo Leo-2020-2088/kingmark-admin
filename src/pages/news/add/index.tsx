@@ -7,8 +7,9 @@ import { fieldLabels } from './_config';
 import type { ErrorField } from './_data';
 import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
-import ProForm, { ProFormUploadButton, ProFormText } from '@ant-design/pro-form';
+import ProForm, { ProFormText } from '@ant-design/pro-form';
 import ProFormEditor from '@/components/ProFormEditor';
+import ProFormUploadImg from '@/components/ProFormUploadImg';
 
 const NewNews: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
@@ -93,17 +94,7 @@ const NewNews: React.FC = () => {
         <ProCard title="新闻封面" className={styles.card} headerBordered>
           <Row gutter={16}>
             <Col sm={24}>
-              <ProFormUploadButton
-                label={fieldLabels.img}
-                name="img"
-                max={1}
-                fieldProps={{
-                  name: 'file',
-                  listType: 'picture-card',
-                }}
-                action="/api/km/upload/file"
-                extra=""
-              />
+              <ProFormUploadImg label={fieldLabels.img} max={1} name="img" />
             </Col>
           </Row>
         </ProCard>

@@ -4,7 +4,7 @@ import { request } from 'umi';
 
 /** 获取产品列表 GET /api/classification */
 export async function queryTableDataApi(
-  params: {
+  params?: {
     // query
     /** 当前的页码 */
     current?: number;
@@ -24,10 +24,10 @@ export async function queryTableDataApi(
 /** 删除产品 POST /api/peoducts/del */
 export async function delTableDataApi(
   // 产品 ID 数组
-  ids: string[]
+  ids: string[],
 ) {
   return request(`/api/km/category/delete`, {
     method: 'post',
-    data: ids
+    data: ids,
   });
 }

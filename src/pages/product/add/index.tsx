@@ -7,12 +7,9 @@ import { fieldLabels } from './_config';
 import type { ErrorField } from './_data.d';
 import { fakeSubmitForm } from './_api';
 import ProCard from '@ant-design/pro-card';
-import ProForm, {
-  ProFormUploadButton,
-  ProFormSelect,
-  ProFormText,
-  ProFormTextArea,
-} from '@ant-design/pro-form';
+import ProForm, { ProFormText, ProFormTextArea, ProFormTreeSelect } from '@ant-design/pro-form';
+import { queryClassificationOptions } from '@/services/common';
+import ProFormUploadImg from '@/components/ProFormUploadImg';
 
 const NewProduct: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
@@ -97,36 +94,27 @@ const NewProduct: React.FC = () => {
         <ProCard title="产品分类信息与产品图片" className={styles.card} headerBordered>
           <Row gutter={16}>
             <Col lg={10} md={12} sm={24}>
-              <ProFormSelect
-                // labelWrap={false}
-                label={fieldLabels.classification}
+              <ProFormTreeSelect
                 name="classification"
-                rules={[{ required: true, message: '请选择产品分类' }]}
-                options={[
-                  {
-                    label: '产品分类01',
-                    value: '01',
-                  },
-                  {
-                    label: '产品分类02',
-                    value: '02',
-                  },
-                ]}
+                label={fieldLabels.classification}
                 placeholder="请选择产品分类"
+                allowClear
+                secondary
+                rules={[{ required: true, message: '请选择产品分类' }]}
+                request={queryClassificationOptions}
+                fieldProps={{
+                  showArrow: true,
+                  filterTreeNode: true,
+                  showSearch: true,
+                  dropdownMatchSelectWidth: false,
+                  labelInValue: true,
+                  autoClearSearchValue: true,
+                  multiple: false,
+                }}
               />
             </Col>
             <Col sm={24}>
-              <ProFormUploadButton
-                label={fieldLabels.img}
-                name="img"
-                max={1}
-                fieldProps={{
-                  name: 'file',
-                  listType: 'picture-card',
-                }}
-                action="/api/km/upload/file"
-                extra=""
-              />
+              <ProFormUploadImg label={fieldLabels.img} max={1} name="img" />
             </Col>
           </Row>
         </ProCard>

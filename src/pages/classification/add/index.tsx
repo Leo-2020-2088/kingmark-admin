@@ -8,7 +8,7 @@ import type { ErrorField } from './_data';
 import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
 import { useParams, history } from 'umi';
-import ProForm, { ProFormSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import ProForm, { ProFormTreeSelect, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import ProFormUploadImg from '@/components/ProFormUploadImg';
 
 interface ClassificationRouterParam {
@@ -110,22 +110,62 @@ const NewClassification: React.FC = () => {
           <Row gutter={16}>
             {level !== '0' && (
               <Col lg={10} md={12} sm={24}>
-                <ProFormSelect
-                  // labelWrap={false}
-                  label={fieldLabels.pid}
+                <ProFormTreeSelect
+                  label={fieldLabels.name}
                   name="pid"
-                  rules={[{ required: true, message: '请选择父级分类' }]}
-                  options={[
-                    {
-                      label: '产品分类01',
-                      value: '01',
+                  placeholder="Please select"
+                  allowClear
+                  width={330}
+                  secondary
+                  request={async () => {
+                    return [
+                      {
+                        title: 'Node1',
+                        value: '0-0',
+                        children: [
+                          {
+                            title: 'Child Node1',
+                            value: '0-0-0',
+                          },
+                        ],
+                      },
+                      {
+                        title: 'Node2',
+                        value: '0-1',
+                        children: [
+                          {
+                            title: 'Child Node3',
+                            value: '0-1-0',
+                          },
+                          {
+                            title: 'Child Node4',
+                            value: '0-1-1',
+                          },
+                          {
+                            title: 'Child Node5',
+                            value: '0-1-2',
+                          },
+                        ],
+                      },
+                    ];
+                  }}
+                  // tree-select args
+                  fieldProps={{
+                    showArrow: true,
+                    filterTreeNode: true,
+                    showSearch: true,
+                    dropdownMatchSelectWidth: false,
+                    labelInValue: true,
+                    autoClearSearchValue: true,
+                    multiple: false,
+                    treeNodeFilterProp: 'title',
+                    treeLine: {
+                      showLeafIcon: false,
                     },
-                    {
-                      label: '产品分类02',
-                      value: '02',
+                    fieldNames: {
+                      label: 'title',
                     },
-                  ]}
-                  placeholder="请选择产品分类"
+                  }}
                 />
               </Col>
             )}
