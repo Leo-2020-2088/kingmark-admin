@@ -73,6 +73,7 @@ const ProFormUploadImg: React.FC<ProFormItemProps & { max: number }> = (
   //     <div style={{ marginTop: 8 }}>点击上传</div>
   //   </div>
   // );
+
   return (
     <>
       {/* <Upload
@@ -94,6 +95,7 @@ const ProFormUploadImg: React.FC<ProFormItemProps & { max: number }> = (
           listType: 'picture-card',
           onPreview: handlePreview,
         }}
+        initialValue={props.initialValue}
         action="/api/km/upload/file"
       />
       <Modal

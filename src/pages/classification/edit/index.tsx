@@ -8,8 +8,6 @@ interface ProductEditRouterParam {
 const EditProduct: React.FC = () => {
   const { id }: ProductEditRouterParam = useParams();
   const [formData, setFormData] = useState<API.ClassificationListItem>();
-  // const {data} = useRequest(fetchDataById, )
-  // console.log(12, id) , error, loading
   const { data } = useRequest({
     url: `/api/km/category/${id}`,
     method: 'GET',
