@@ -19,16 +19,10 @@ const EditProduct: React.FC = () => {
   const [error, setError] = useState<ErrorField[]>([]);
   const [activeTabKey, setActiveTabKey] = useState<string>('cn');
   const { id }: ProductEditRouterParam = useParams();
-  // const [formData, setFormData] = useState<API.ClassificationListItem>();
   const { data: currentProduct, loading } = useRequest({
     url: `/api/km/product/${id}`,
     method: 'GET',
   });
-  // useEffect(() => {
-  //   setFormData(data);
-  //   console.log(28, data)
-  // }, [data]);
-  console.log(30, currentProduct);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
