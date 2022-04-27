@@ -100,6 +100,13 @@ export const setTableColumns = (
           />
         );
       },
+      valueType: 'select',
+      initialValue: 'all',
+      valueEnum: {
+        all: { text: '全部' },
+        '01': { text: '上架' },
+        '02': { text: '下架' },
+      },
     },
     {
       title: '创建时间',
