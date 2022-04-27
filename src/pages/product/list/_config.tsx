@@ -4,6 +4,8 @@ import { history, Link } from 'umi';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { delTableDataApi, publishApi, setTopApi } from './_api';
 import { queryClassificationOptions } from '@/services/common';
+import ProPictureView from '@/components/ProPictureView';
+import styles from './index.less';
 
 export const handleRemove = async (ids: string[], actionRef: ActionType) => {
   try {
@@ -52,10 +54,16 @@ export const setTableColumns = (
     {
       title: '产品',
       dataIndex: 'nameCn',
+      width: 280,
       render: (_, row: API.ProductListItem) => {
         return (
-          <div>
-            <img src={row.img} />
+          <div className={styles.productInfo}>
+            <ProPictureView src={row.img} title={row.nameCn} />
+            {/* /{row.nameEn} */}
+            <div className={styles._right}>
+              <h1>{row.nameCn}</h1>
+              <p>{row.introCn}</p>
+            </div>
           </div>
         );
       },
@@ -63,6 +71,7 @@ export const setTableColumns = (
     {
       title: '产品分类',
       dataIndex: 'classification',
+      valueType: 'treeSelect',
       request: queryClassificationOptions,
     },
     {

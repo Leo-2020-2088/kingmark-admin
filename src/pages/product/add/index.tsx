@@ -97,7 +97,7 @@ const NewProduct: React.FC = () => {
           <Row gutter={16}>
             <Col lg={10} md={12} sm={24}>
               <ProFormTreeSelect
-                name="classification"
+                name="classificationId"
                 label={fieldLabels.classification}
                 placeholder="请选择产品分类"
                 allowClear
@@ -109,7 +109,7 @@ const NewProduct: React.FC = () => {
                   filterTreeNode: true,
                   showSearch: true,
                   dropdownMatchSelectWidth: false,
-                  labelInValue: true,
+                  labelInValue: false,
                   autoClearSearchValue: true,
                   multiple: false,
                 }}

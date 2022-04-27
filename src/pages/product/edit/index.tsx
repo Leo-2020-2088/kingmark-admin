@@ -127,7 +127,7 @@ const EditProduct: React.FC = () => {
                   filterTreeNode: true,
                   showSearch: true,
                   dropdownMatchSelectWidth: false,
-                  labelInValue: true,
+                  labelInValue: false,
                   autoClearSearchValue: true,
                   multiple: false,
                 }}

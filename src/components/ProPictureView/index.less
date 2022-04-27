@@ -1,0 +1,56 @@
+@import '~antd/es/style/themes/default.less';
+
+// .container > * {
+//   background-color: @popover-bg;
+//   border-radius: 4px;
+//   box-shadow: @shadow-1-down;
+// }
+// @media screen and (max-width: @screen-xs) {
+//   .container {
+//     width: 100% !important;
+//   }
+//   .container > * {
+//     border-radius: 0 !important;
+//   }
+// }
+.container {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    display: none;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+}
+.container::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  // display: none;
+  height: 100%;
+  background-color: none;
+  content: '';
+}
+.container:hover {
+  .icon {
+    display: block;
+  }
+}
+.container:hover::after {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition-timing-function: linear;
+  transition-duration: 0.5s;
+  transition-property: background-color;
+}
