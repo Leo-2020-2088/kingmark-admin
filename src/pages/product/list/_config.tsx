@@ -53,8 +53,14 @@ export const setTableColumns = (
     },
     {
       title: '产品',
-      dataIndex: 'nameCn',
+      dataIndex: 'name',
       width: 280,
+      formItemProps: {
+        label: '产品名称',
+      },
+      fieldProps: {
+        placeholder: '请输入产品中文名称或中文名称',
+      },
       render: (_, row: API.ProductListItem) => {
         return (
           <div className={styles.productInfo}>
@@ -72,11 +78,17 @@ export const setTableColumns = (
       title: '产品分类',
       dataIndex: 'classification',
       valueType: 'treeSelect',
+      fieldProps: {
+        placeholder: '请选择产品分类',
+      },
       request: queryClassificationOptions,
     },
     {
       title: '状态',
       dataIndex: 'status',
+      fieldProps: {
+        placeholder: '请选择产品状态',
+      },
       render: (dom: ReactNode, record: API.ProductListItem) => {
         async function handleChange(checked: boolean) {
           try {
