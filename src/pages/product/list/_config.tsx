@@ -101,9 +101,9 @@ export const setTableColumns = (
         );
       },
       valueType: 'select',
-      initialValue: 'all',
+      initialValue: '03',
       valueEnum: {
-        all: { text: '全部' },
+        '03': { text: '全部' },
         '01': { text: '上架' },
         '02': { text: '下架' },
       },
