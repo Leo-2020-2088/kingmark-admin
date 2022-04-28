@@ -60,6 +60,7 @@ const NewNews: React.FC = () => {
     );
   };
   const onFinish = async (values: Record<string, any>) => {
+    console.log(63, values);
     setError([]);
     try {
       await onSave(values);
@@ -125,6 +126,10 @@ const NewNews: React.FC = () => {
                   name="contentCn"
                   placeholder="请输入中文内容"
                   rules={[{ required: true, message: '请输入中文内容' }]}
+                  // transform={(value: any) => {
+                  //   console.log(130, value)
+                  //   return '<p>OK</p>'
+                  // }}
                 />
               </Col>
             </Row>
@@ -156,4 +161,5 @@ const NewNews: React.FC = () => {
     </ProForm>
   );
 };
+
 export default NewNews;
