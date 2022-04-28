@@ -53,7 +53,7 @@ export const setTableColumns = (
         // 添加子分类
         return (
           <>
-            <Link className="space-plus" to={`/classification/edit/${id}`}>
+            <Link className="space-plus" to={`/classification/edit/${level}/${id}`}>
               编辑
             </Link>
             <Popconfirm

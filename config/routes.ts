@@ -79,7 +79,7 @@
       },
       {
         name: 'classification-edit',
-        path: '/classification/edit/:id',
+        path: '/classification/edit/:level/:id',
         component: './classification/edit',
       },
     ],
