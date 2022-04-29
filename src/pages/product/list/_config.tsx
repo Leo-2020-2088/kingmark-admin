@@ -77,6 +77,13 @@ export const setTableColumns = (
       fieldProps: {
         placeholder: '请选择产品状态',
       },
+      valueType: 'select',
+      initialValue: '03',
+      valueEnum: {
+        '03': { text: '全部' },
+        '01': { text: '上架' },
+        '02': { text: '下架' },
+      },
       render: (dom: ReactNode, record: API.ProductListItem) => {
         async function handleChange(checked: boolean) {
           try {
@@ -99,13 +106,6 @@ export const setTableColumns = (
             onChange={handleChange}
           />
         );
-      },
-      valueType: 'select',
-      initialValue: '03',
-      valueEnum: {
-        '03': { text: '全部' },
-        '01': { text: '上架' },
-        '02': { text: '下架' },
       },
     },
     {

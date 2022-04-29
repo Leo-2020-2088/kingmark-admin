@@ -31,16 +31,19 @@ export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] 
       },
       render: (_, row: API.NewsListItem) => <ProCon {...row} />,
     },
-    // {
-    //   title: '封面图',
-    //   dataIndex: 'img',
-    //   key: 'image',
-    //   hideInSearch: true,
-    //   valueType: 'image',
-    // },
     {
       title: '状态',
       dataIndex: 'status',
+      fieldProps: {
+        placeholder: '请选择新闻发布状态',
+      },
+      valueType: 'select',
+      initialValue: '03',
+      valueEnum: {
+        '03': { text: '全部' },
+        '01': { text: '发布' },
+        '02': { text: '撤回' },
+      },
       render: (dom: ReactNode, record: API.NewsListItem) => {
         function onChange(checked: boolean) {
           console.log(`${record.nameCn} ${checked}`);
