@@ -97,7 +97,12 @@ const NewNews: React.FC = () => {
         <ProCard title="新闻封面" className={styles.card} headerBordered>
           <Row gutter={16}>
             <Col sm={24}>
-              <ProFormUploadImg label={fieldLabels.img} max={1} name="img" />
+              <ProFormUploadImg
+                label={fieldLabels.img}
+                max={1}
+                name="img"
+                transform={(value: any) => ({ img: value[0].response.data })}
+              />
             </Col>
           </Row>
         </ProCard>

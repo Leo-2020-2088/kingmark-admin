@@ -134,7 +134,12 @@ const NewClassification: React.FC = () => {
             )}
             {level === '0' && (
               <Col sm={24}>
-                <ProFormUploadImg label={fieldLabels.img} max={1} name="img" />
+                <ProFormUploadImg
+                  label={fieldLabels.img}
+                  max={1}
+                  name="img"
+                  transform={(value: any) => ({ img: value[0].response.data })}
+                />
               </Col>
             )}
           </Row>

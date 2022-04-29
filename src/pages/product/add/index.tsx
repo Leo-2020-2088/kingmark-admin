@@ -116,7 +116,12 @@ const NewProduct: React.FC = () => {
               />
             </Col>
             <Col sm={24}>
-              <ProFormUploadImg label={fieldLabels.img} max={1} name="img" />
+              <ProFormUploadImg
+                label={fieldLabels.img}
+                max={1}
+                name="img"
+                transform={(value: any) => ({ img: value[0].response.data })}
+              />
             </Col>
           </Row>
         </ProCard>

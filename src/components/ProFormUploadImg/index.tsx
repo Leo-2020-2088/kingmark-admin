@@ -97,6 +97,7 @@ const ProFormUploadImg: React.FC<ProFormItemProps & { max: number }> = (
         }}
         initialValue={props.initialValue}
         action="/api/km/upload/file"
+        transform={props.transform}
       />
       <Modal
         title={previewImg.title}
