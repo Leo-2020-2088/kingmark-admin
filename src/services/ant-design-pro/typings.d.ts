@@ -45,7 +45,7 @@ declare namespace API {
     createdAt?: string; // 创建时间
     updatedAt?: string; // 更新时间
     introCn?: srting; // 中文简介
-    introEm?: string; // 英文简介
+    introEn?: string; // 英文简介
     id: string; // 产品 ID
   };
   type ClassificationListItem = {

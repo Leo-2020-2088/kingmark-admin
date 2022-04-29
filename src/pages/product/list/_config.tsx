@@ -4,8 +4,7 @@ import { history, Link } from 'umi';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { delTableDataApi, publishApi, setTopApi } from './_api';
 import { queryClassificationOptions } from '@/services/common';
-import ProPictureView from '@/components/ProPictureView';
-import styles from './index.less';
+import ProCon from '@/components/ProCon';
 
 export const handleRemove = async (ids: string[], actionRef: ActionType) => {
   try {
@@ -61,18 +60,7 @@ export const setTableColumns = (
       fieldProps: {
         placeholder: '请输入产品中文名称或中文名称',
       },
-      render: (_, row: API.ProductListItem) => {
-        return (
-          <div className={styles.productInfo}>
-            <ProPictureView src={row.img} title={row.nameCn} />
-            {/* /{row.nameEn} */}
-            <div className={styles._right}>
-              <h1>{row.nameCn}</h1>
-              <p>{row.introCn}</p>
-            </div>
-          </div>
-        );
-      },
+      render: (_, row: API.ProductListItem) => <ProCon {...row} />,
     },
     {
       title: '产品分类',

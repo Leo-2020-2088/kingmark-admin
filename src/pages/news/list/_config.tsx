@@ -1,3 +1,4 @@
+import ProCon from '@/components/ProCon';
 import type { ProColumns } from '@ant-design/pro-table';
 import { Popconfirm, Switch, message } from 'antd';
 import { ReactNode } from 'react';
@@ -19,24 +20,28 @@ export const handleRemove = async (ids: string[], actionRef: any) => {
 export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] => {
   return [
     {
-      title: '新闻标题',
-      dataIndex: 'nameCn',
-      render: (_, row: API.NewsListItem) => {
-        const { nameCn, nameEn } = row;
-        return `${nameCn}/${nameEn}`;
+      title: '新闻',
+      dataIndex: 'name',
+      width: 280,
+      formItemProps: {
+        label: '新闻标题',
       },
+      fieldProps: {
+        placeholder: '请输入新闻中文标题或中文标题',
+      },
+      render: (_, row: API.NewsListItem) => <ProCon {...row} />,
     },
-    {
-      title: '封面图',
-      dataIndex: 'img',
-      key: 'image',
-      hideInSearch: true,
-      valueType: 'image',
-    },
+    // {
+    //   title: '封面图',
+    //   dataIndex: 'img',
+    //   key: 'image',
+    //   hideInSearch: true,
+    //   valueType: 'image',
+    // },
     {
       title: '状态',
       dataIndex: 'status',
-      render: (dom: ReactNode, record: API.ProductListItem) => {
+      render: (dom: ReactNode, record: API.NewsListItem) => {
         function onChange(checked: boolean) {
           console.log(`${record.nameCn} ${checked}`);
         }

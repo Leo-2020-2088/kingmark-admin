@@ -12,11 +12,14 @@ const genList = (current: number, pageSize: number) => {
     tableListDataSource.push({
       index: index,
       isTop: i % 6 === 0,
-      img: 'https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png',
+      img: '/files/cf4394a4-8b5e-485d-906c-81696e0a066f.jpg',
       classification: '分类1/分类11',
-      nameCn: `产品名称${i}`,
+      nameCn: `产品名产品称产品名产品称产品名产品称产品名产品称产品名产品称${i}`,
       nameEn: `pro${i}`,
       status: '01',
+      introCn:
+        '这是一个很不错的餐品大家都说好限制都说好限制都说好限制都说好限制都说好限制都说好限制都说好限制都说好限制',
+      introEn: 'she is a beautiful gile',
       updatedAt: moment().format('YYYY-MM-DD'),
       createdAt: moment().format('YYYY-MM-DD'),
       id: `procode${index}`,
