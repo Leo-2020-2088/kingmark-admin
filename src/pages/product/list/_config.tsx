@@ -66,12 +66,15 @@ export const setTableColumns = (
     },
     {
       title: '产品分类',
-      dataIndex: 'classification',
+      dataIndex: 'classificationId',
       valueType: 'treeSelect',
       fieldProps: {
         placeholder: '请选择产品分类',
       },
       request: queryClassificationOptions,
+      render: (_, record: API.ProductListItem) => {
+        return <a>{record.classification}</a>;
+      },
     },
     {
       title: '状态',
