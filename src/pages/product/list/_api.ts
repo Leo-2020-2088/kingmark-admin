@@ -35,5 +35,5 @@ export async function publishApi(id: string, isPublish: boolean) {
   return request(`/api/km/product/publish/${id}/${isPublish ? '01' : '02'}`, { method: 'POST' });
 }
 export async function setTopApi(id: string, isTop: boolean) {
-  return request(`/api/km/product/top/${id}/${isTop ? '1' : '0'}`);
+  return request(`/api/km/product/top/${id}/${isTop}`);
 }

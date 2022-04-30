@@ -32,8 +32,10 @@ export const setTableColumns = (
     {
       title: '置顶',
       dataIndex: 'isTop',
+      width: 70,
+      align: 'center',
       hideInSearch: true,
-      render: (dom: any, record: API.ProductListItem) => {
+      render: (_, record: API.ProductListItem) => {
         async function handleChange(checked: boolean) {
           try {
             const res = await setTopApi(record.id, checked);
@@ -47,7 +49,7 @@ export const setTableColumns = (
             message.error(error.message);
           }
         }
-        return <Switch defaultChecked={dom === '1'} onChange={handleChange} />;
+        return <Switch defaultChecked={record.isTop} onChange={handleChange} />;
       },
     },
     {
@@ -74,6 +76,8 @@ export const setTableColumns = (
     {
       title: '状态',
       dataIndex: 'status',
+      width: 70,
+      align: 'center',
       fieldProps: {
         placeholder: '请选择产品状态',
       },
