@@ -26,7 +26,7 @@ export async function delTableDataApi(
   // 产品 ID 数组
   ids: string[],
 ) {
-  return request(`/api/km/category/delete`, {
+  return request(`/api/km/news/delete`, {
     method: 'post',
     data: ids,
   });

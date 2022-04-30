@@ -138,7 +138,7 @@ const EditProduct: React.FC = () => {
                 label={fieldLabels.img}
                 max={1}
                 name="img"
-                transform={(value: any) => ({ img: value[0].response.data })}
+                transform={(value: any) => ({ img: value[0]?.response?.data || value[0].url })}
               />
             </Col>
           </Row>

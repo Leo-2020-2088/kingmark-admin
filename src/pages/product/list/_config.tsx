@@ -1,5 +1,5 @@
 import { Switch, Popconfirm, message } from 'antd';
-import type { ReactNode } from 'react';
+// import type { ReactNode } from 'react';
 import { history, Link } from 'umi';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { delTableDataApi, publishApi, setTopApi } from './_api';
@@ -84,10 +84,12 @@ export const setTableColumns = (
         '01': { text: '上架' },
         '02': { text: '下架' },
       },
-      render: (dom: ReactNode, record: API.ProductListItem) => {
+      render: (_, record: API.ProductListItem) => {
+        // console.log('88/dom:', dom)
+        const { status, id } = record;
         async function handleChange(checked: boolean) {
           try {
-            const res = await publishApi(record.id, checked);
+            const res = await publishApi(id, checked);
             if (res.success) {
               actionRef?.current?.reload();
               message.success(`${checked ? '上架' : '下架'}成功！`);
@@ -101,7 +103,7 @@ export const setTableColumns = (
         return (
           <Switch
             checkedChildren="上架"
-            defaultChecked={dom === '01'}
+            defaultChecked={status === '01'}
             unCheckedChildren="下架"
             onChange={handleChange}
           />
