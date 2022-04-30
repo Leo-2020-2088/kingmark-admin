@@ -2,6 +2,8 @@ import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Popconfirm, message } from 'antd';
 import { history, Link } from 'umi';
 import { delTableDataApi } from './_api';
+import ProCon from '@/components/ProCon';
+
 export const handleRemove = async (ids: string[], actionRef: ActionType) => {
   try {
     const res = await delTableDataApi(ids);
@@ -19,20 +21,32 @@ export const setTableColumns = (
   actionRef: ActionType,
 ): ProColumns<API.ClassificationListItem>[] => {
   return [
+    // {
+    //   title: '分类名称',
+    //   dataIndex: 'nameCn',
+    //   render: (_, row: API.ClassificationListItem) => {
+    //     const { nameCn, nameEn } = row;
+    //     return `${nameCn}/${nameEn}`;
+    //   },
+    // },
+    // {
+    //   title: '封面图',
+    //   dataIndex: 'img',
+    //   key: 'image',
+    //   hideInSearch: true,
+    //   valueType: 'image',
+    // },
     {
-      title: '分类名称',
-      dataIndex: 'nameCn',
-      render: (_, row: API.ClassificationListItem) => {
-        const { nameCn, nameEn } = row;
-        return `${nameCn}/${nameEn}`;
+      title: '分类',
+      dataIndex: 'name',
+      width: 350,
+      formItemProps: {
+        label: '分类名称',
       },
-    },
-    {
-      title: '封面图',
-      dataIndex: 'img',
-      key: 'image',
-      hideInSearch: true,
-      valueType: 'image',
+      fieldProps: {
+        placeholder: '请输入分类中文名称或中文名称',
+      },
+      render: (_, row: API.ClassificationListItem) => <ProCon {...row} />,
     },
     {
       title: '创建时间',
