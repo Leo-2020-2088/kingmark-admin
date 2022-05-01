@@ -7,7 +7,7 @@ export async function fetchDataById(id: string) {
 }
 
 export async function onSave(params: any) {
-  return request('/api/km/product/update', {
+  return request('/api/km/category/update', {
     method: 'POST',
     data: params,
   });
