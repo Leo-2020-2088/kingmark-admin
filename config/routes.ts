@@ -87,6 +87,11 @@
         path: '/classification/edit/:level/:id',
         component: './classification/edit',
       },
+      {
+        name: 'classification-view',
+        path: '/classification/view/:level/:id',
+        component: './classification/view',
+      },
     ],
   },
   {

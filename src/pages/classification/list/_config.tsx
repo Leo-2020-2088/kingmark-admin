@@ -22,21 +22,6 @@ export const setTableColumns = (
   actionRef: ActionType,
 ): ProColumns<API.ClassificationListItem>[] => {
   return [
-    // {
-    //   title: '分类名称',
-    //   dataIndex: 'nameCn',
-    //   render: (_, row: API.ClassificationListItem) => {
-    //     const { nameCn, nameEn } = row;
-    //     return `${nameCn}/${nameEn}`;
-    //   },
-    // },
-    // {
-    //   title: '封面图',
-    //   dataIndex: 'img',
-    //   key: 'image',
-    //   hideInSearch: true,
-    //   valueType: 'image',
-    // },
     {
       title: '分类',
       dataIndex: 'name',
@@ -53,6 +38,7 @@ export const setTableColumns = (
     {
       title: '创建时间',
       align: 'center',
+      width: 120,
       hideInSearch: true,
       dataIndex: 'createdAt',
       render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.createdAt} />,
@@ -60,19 +46,24 @@ export const setTableColumns = (
     {
       title: '更新时间',
       align: 'center',
+      width: 120,
       hideInSearch: true,
       dataIndex: 'updatedAt',
       render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.updatedAt} />,
     },
     {
       title: '操作',
+      align: 'center',
+      width: 200,
       hideInSearch: true,
       dataIndex: 'id',
       render: (_, record: API.ClassificationListItem) => {
         const { id, level } = record;
-        // 添加子分类
         return (
           <>
+            <Link className="space-plus" to={`/classification/view/${level}/${id}`}>
+              查看
+            </Link>
             <Link className="space-plus" to={`/classification/edit/${level}/${id}`}>
               编辑
             </Link>
