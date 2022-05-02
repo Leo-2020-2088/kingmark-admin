@@ -24,7 +24,7 @@ export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] 
     {
       title: '新闻',
       dataIndex: 'name',
-      width: 280,
+      // width: 280,
       formItemProps: {
         label: '新闻标题',
       },
@@ -41,6 +41,8 @@ export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] 
       },
       valueType: 'select',
       initialValue: '03',
+      align: 'center',
+      width: 100,
       valueEnum: {
         '03': { text: '全部' },
         '01': { text: '发布' },
@@ -65,6 +67,7 @@ export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] 
       hideInSearch: true,
       align: 'center',
       dataIndex: 'createdAt',
+      width: 180,
       render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.createdAt} />,
     },
     {
@@ -72,16 +75,22 @@ export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] 
       align: 'center',
       hideInSearch: true,
       dataIndex: 'updatedAt',
+      width: 180,
       render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.updatedAt} />,
     },
     {
       title: '操作',
       hideInSearch: true,
       dataIndex: 'id',
+      width: 120,
+      align: 'center',
       render: (_, record: API.NewsListItem) => {
         const { id } = record;
         return (
           <>
+            <Link className="space-plus" to={`/news/edit/${id}`}>
+              查看
+            </Link>
             <Link className="space-plus" to={`/news/edit/${id}`}>
               编辑
             </Link>

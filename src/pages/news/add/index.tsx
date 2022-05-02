@@ -7,7 +7,7 @@ import { fieldLabels } from './_config';
 import type { ErrorField } from './_data';
 import { onSave } from './_api';
 import ProCard from '@ant-design/pro-card';
-import ProForm, { ProFormText } from '@ant-design/pro-form';
+import ProForm, { ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import ProFormEditor from '@/components/ProFormEditor';
 import ProFormUploadImg from '@/components/ProFormUploadImg';
 import { history } from 'umi';
@@ -125,6 +125,15 @@ const NewNews: React.FC = () => {
               </Col>
             </Row>
             <Row gutter={16}>
+              <Col lg={10} md={12} sm={24}>
+                <ProFormTextArea
+                  label={fieldLabels.intro}
+                  placeholder="请输入中文提要"
+                  name="introCn"
+                />
+              </Col>
+            </Row>
+            <Row gutter={16}>
               <Col sm={24}>
                 <ProFormEditor
                   label={fieldLabels.content}
@@ -147,6 +156,15 @@ const NewNews: React.FC = () => {
                   name="nameEn"
                   placeholder="请输入英文标题"
                   rules={[{ required: true, message: '请输入英文标题' }]}
+                />
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col lg={10} md={12} sm={24}>
+                <ProFormTextArea
+                  label={fieldLabels.intro}
+                  name="introEn"
+                  placeholder="请输入英文提要"
                 />
               </Col>
             </Row>

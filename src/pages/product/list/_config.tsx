@@ -93,7 +93,6 @@ export const setTableColumns = (
         '02': { text: '下架' },
       },
       render: (_, record: API.ProductListItem) => {
-        // console.log('88/dom:', dom)
         const { status, id } = record;
         async function handleChange(checked: boolean) {
           try {

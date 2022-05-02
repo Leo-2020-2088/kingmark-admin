@@ -26,7 +26,7 @@ export const setTableColumns = (
       title: '分类',
       dataIndex: 'name',
       className: 'classificationWrap',
-      width: 350,
+      // width: 350,
       formItemProps: {
         label: '分类名称',
       },
@@ -38,7 +38,7 @@ export const setTableColumns = (
     {
       title: '创建时间',
       align: 'center',
-      width: 120,
+      width: 180,
       hideInSearch: true,
       dataIndex: 'createdAt',
       render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.createdAt} />,
@@ -46,7 +46,7 @@ export const setTableColumns = (
     {
       title: '更新时间',
       align: 'center',
-      width: 120,
+      width: 180,
       hideInSearch: true,
       dataIndex: 'updatedAt',
       render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.updatedAt} />,
