@@ -50,10 +50,10 @@ const EditProduct: React.FC = () => {
         render: () => {
           return (
             <FooterToolbar>
+              <Button onClick={handleGo.bind(null, `/product/list`)}>返回</Button>
               <Button type="primary" onClick={handleGo.bind(null, `/product/edit/${id}`)}>
                 编辑
               </Button>
-              <Button onClick={handleGo.bind(null, `/product/list`)}>返回</Button>
             </FooterToolbar>
           );
         },

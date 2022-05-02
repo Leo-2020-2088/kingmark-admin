@@ -94,8 +94,8 @@ const EditClassification: React.FC = () => {
           return (
             <FooterToolbar>
               {getErrorInfo(error)}
-              {dom}
               <Button onClick={() => history.push('/classification/list')}>返回</Button>
+              {dom}
             </FooterToolbar>
           );
         },

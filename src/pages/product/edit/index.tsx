@@ -92,8 +92,8 @@ const EditProduct: React.FC = () => {
           return (
             <FooterToolbar>
               {getErrorInfo(error)}
-              {dom}
               <Button onClick={() => history.push('/product/list')}>返回</Button>
+              {dom}
             </FooterToolbar>
           );
         },
