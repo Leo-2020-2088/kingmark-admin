@@ -139,16 +139,14 @@ const EditClassification: React.FC = () => {
                 />
               </Col>
             )}
-            {level === '1' && (
-              <Col sm={24}>
-                <ProFormUploadImg
-                  label={fieldLabels.img}
-                  max={1}
-                  name="img"
-                  transform={(value: any) => ({ img: value[0]?.response?.data || value[0].url })}
-                />
-              </Col>
-            )}
+            <Col sm={24}>
+              <ProFormUploadImg
+                label={fieldLabels.img}
+                max={1}
+                name="img"
+                transform={(value: any) => ({ img: value[0]?.response?.data || value[0].url })}
+              />
+            </Col>
           </Row>
         </ProCard>
         <ProCard

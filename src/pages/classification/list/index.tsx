@@ -6,6 +6,7 @@ import React, { useState, useRef } from 'react';
 import { queryTableDataApi, delTableDataApi } from './_api';
 import { ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { setTableColumns, handleAdd } from './_config';
+import './style.less';
 
 const ClassificationList: React.FC = () => {
   const actionRef: any = useRef<ActionType>();

@@ -3,6 +3,7 @@ import { Popconfirm, message } from 'antd';
 import { history, Link } from 'umi';
 import { delTableDataApi } from './_api';
 import ProCon from '@/components/ProCon';
+import ProDatePlaceholder from '@/components/ProDatePlaceholder';
 
 export const handleRemove = async (ids: string[], actionRef: ActionType) => {
   try {
@@ -39,6 +40,7 @@ export const setTableColumns = (
     {
       title: '分类',
       dataIndex: 'name',
+      className: 'classificationWrap',
       width: 350,
       formItemProps: {
         label: '分类名称',
@@ -50,13 +52,17 @@ export const setTableColumns = (
     },
     {
       title: '创建时间',
+      align: 'center',
       hideInSearch: true,
       dataIndex: 'createdAt',
+      render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.createdAt} />,
     },
     {
       title: '更新时间',
+      align: 'center',
       hideInSearch: true,
       dataIndex: 'updatedAt',
+      render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.updatedAt} />,
     },
     {
       title: '操作',

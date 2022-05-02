@@ -5,6 +5,7 @@ import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { delTableDataApi, publishApi, setTopApi } from './_api';
 import { queryClassificationOptions } from '@/services/common';
 import ProCon from '@/components/ProCon';
+import ProDatePlaceholder from '@/components/ProDatePlaceholder';
 
 export const handleRemove = async (ids: string[], actionRef: ActionType) => {
   try {
@@ -119,13 +120,17 @@ export const setTableColumns = (
     },
     {
       title: '创建时间',
+      align: 'center',
       hideInSearch: true,
       dataIndex: 'createdAt',
+      render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.createdAt} />,
     },
     {
       title: '更新时间',
+      align: 'center',
       hideInSearch: true,
       dataIndex: 'updatedAt',
+      render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.updatedAt} />,
     },
     {
       title: '操作',

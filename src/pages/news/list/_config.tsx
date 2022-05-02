@@ -4,6 +4,8 @@ import { Popconfirm, Switch, message } from 'antd';
 import { ReactNode } from 'react';
 import { history, Link } from 'umi';
 import { delTableDataApi } from './_api';
+import ProDatePlaceholder from '@/components/ProDatePlaceholder';
+
 export const handleRemove = async (ids: string[], actionRef: any) => {
   try {
     const res = await delTableDataApi(ids);
@@ -61,12 +63,16 @@ export const setTableColumns = (actionRef: any): ProColumns<API.NewsListItem>[] 
     {
       title: '创建时间',
       hideInSearch: true,
+      align: 'center',
       dataIndex: 'createdAt',
+      render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.createdAt} />,
     },
     {
       title: '更新时间',
+      align: 'center',
       hideInSearch: true,
       dataIndex: 'updatedAt',
+      render: (_, row: API.ClassificationListItem) => <ProDatePlaceholder date={row.updatedAt} />,
     },
     {
       title: '操作',
