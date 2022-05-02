@@ -55,6 +55,11 @@
         path: '/product/edit/:id',
         component: './product/edit',
       },
+      {
+        name: 'product-view',
+        path: '/product/view/:id',
+        component: './product/view',
+      },
     ],
   },
   {

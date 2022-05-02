@@ -53,6 +53,7 @@ export default {
   'menu.product.product-list': '产品列表',
   'menu.product.product-add': '新增',
   'menu.product.product-edit': '编辑',
+  'menu.product.product-view': '查看',
   'menu.classification': '分类管理',
   'menu.classification.classification-list': '分类列表',
   'menu.classification.classification-add': '新增',

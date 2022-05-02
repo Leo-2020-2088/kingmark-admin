@@ -136,11 +136,16 @@ export const setTableColumns = (
       title: '操作',
       hideInSearch: true,
       dataIndex: 'id',
+      align: 'center',
+      width: 120,
       render: (_, record: API.ClassificationListItem) => {
         const { id } = record;
         // 添加子分类
         return (
           <>
+            <Link className="space-plus" to={`/product/view/${id}`}>
+              查看
+            </Link>
             <Link className="space-plus" to={`/product/edit/${id}`}>
               编辑
             </Link>
