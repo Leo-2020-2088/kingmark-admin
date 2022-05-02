@@ -2,7 +2,7 @@ import { FooterToolbar, PageContainer } from '@ant-design/pro-layout';
 import React, { useState } from 'react';
 import styles from './style.less';
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Col, Popover, Row, message } from 'antd';
+import { Col, Popover, Row, message, Button } from 'antd';
 import { fieldLabels } from './_config';
 import type { ErrorField } from './_data.d';
 import { onSave } from './_api';
@@ -93,6 +93,7 @@ const EditProduct: React.FC = () => {
             <FooterToolbar>
               {getErrorInfo(error)}
               {dom}
+              <Button onClick={() => history.push('/product/list')}>返回</Button>
             </FooterToolbar>
           );
         },
